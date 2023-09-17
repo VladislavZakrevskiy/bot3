@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id  Int   @id @unique 
+  username String
+  themes   String[]
+  emoji_pack String[]
+  days     Day[]
+  time_notification String @default("4 hour")
+
+  @@map("user")
+}
+
+model Day {
+  day_id      String  @id @unique @default(uuid())
+  notes       Note[]
+  date  String
+  User        User?   @relation(fields: [user_id], references: [user_id])
+  user_id Int?
+
+  @@map("day")
+}
+
+model Note {
+  note_id    String   @id @unique @default(uuid())
+  mood       Levels
+  experience String?
+  themes     String[]
+  time String
+  Day        Day?     @relation(fields: [day_id], references: [day_id])
+  day_id  String?
+
+  @@map("note")
+}
+
+enum Levels {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}
