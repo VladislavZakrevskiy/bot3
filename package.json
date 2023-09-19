@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "ts-node ./src/main.ts",
 		"generate": "prisma generate",
-		"build": "sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev && npm run generate && npm start"
+		"build": "npm run generate && npm start"
 	},
 	"repository": "https://github.com/VladislavZakrevskiy/bot3.git",
 	"author": "vlad <zakrevskiyvlada@yandex.ru>",
