@@ -5,7 +5,8 @@
 	"scripts": {
 		"start": "ts-node ./src/main.ts",
 		"generate": "prisma generate",
-		"build": "npm run generate && tsc && node dist/index.js"
+		"start:prod": "node dist/index.js",
+		"build": "npm run generate && tsc"
 	},
 	"repository": "https://github.com/VladislavZakrevskiy/bot3.git",
 	"author": "vlad <zakrevskiyvlada@yandex.ru>",
