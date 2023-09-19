@@ -66,7 +66,7 @@ export const setTheme = async (ctx) => {
 				return;
 			}
 
-			earlyNote.themes = [user.themes[i]];
+			earlyNote.themes.push(user.themes[i]);
 			await prisma.note.update({ where: { note_id: earlyNote.note_id }, data: earlyNote });
 			await ctx.reply("Отлично все сохранил");
 		});

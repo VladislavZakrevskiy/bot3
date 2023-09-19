@@ -8,7 +8,12 @@ export const configureShowNotesCommand = () => {
 
 	bot.command("show_notes_today", async (ctx) => {
 		const notes = await prisma.note.findMany({
-			where: { Day: { date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }), User: { user_id: ctx.from.id } } },
+			where: {
+				Day: {
+					date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }),
+					User: { user_id: ctx.from.id },
+				},
+			},
 			include: { Day: true },
 		});
 		const user = await prisma.user.findUnique({ where: { user_id: ctx.from.id } });
@@ -41,7 +46,9 @@ export const configureShowNotesCommand = () => {
 					break;
 			}
 
-			return `${note.time} - ${emoji} [${note.themes.join(", ")}]\n`;
+			return `${note.time} - ${emoji} ${
+				note.themes.length !== 0 ? `[${note.themes.join(", ")}]` : ""
+			}\n`;
 		});
 
 		await ctx.reply(`Записи за ${notes[0].Day?.date || "день"}\n${noteText.join("")}`);
