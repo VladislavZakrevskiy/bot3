@@ -7,7 +7,7 @@ export const getQuestionScene = () => {
 	question.enter((ctx) => ctx.reply("Как прошел ваш день?"));
 	question.on(message("text"), async (ctx) => {
 		const currentNotes = await prisma.note.findMany({
-			where: { Day: { date: new Date().toLocaleDateString(), User: { user_id: ctx.from.id } } },
+			where: { Day: { date: new Date().toLocaleDateString("ru"), User: { user_id: ctx.from.id } } },
 		});
 		let earlyNote;
 		for (let i = 0; i < currentNotes.length; i++) {

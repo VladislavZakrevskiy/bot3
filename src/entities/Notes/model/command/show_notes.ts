@@ -8,7 +8,7 @@ export const configureShowNotesCommand = () => {
 
 	bot.command("show_notes_today", async (ctx) => {
 		const notes = await prisma.note.findMany({
-			where: { Day: { date: new Date().toLocaleDateString(), User: { user_id: ctx.from.id } } },
+			where: { Day: { date: new Date().toLocaleDateString("ru"), User: { user_id: ctx.from.id } } },
 			include: { Day: true },
 		});
 		const user = await prisma.user.findUnique({ where: { user_id: ctx.from.id } });
