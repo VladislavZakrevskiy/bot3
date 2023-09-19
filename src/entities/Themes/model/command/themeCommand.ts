@@ -4,5 +4,5 @@ export const configureThemeCommand = () => {
 	const bot = getBot();
 
 	//@ts-ignore
-	bot.command("themes_set", async (ctx) => ctx.scene.enter("theme"));
+	bot.command("set_themes", async (ctx) => ctx.scene.enter("theme"));
 };
