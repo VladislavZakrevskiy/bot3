@@ -5,6 +5,4 @@ import { configureMoodCommand } from "./command/setMood";
 export const moodModule = () => {
 	configureMoodCommand();
 	moodActions();
-
-	console.log();
 };

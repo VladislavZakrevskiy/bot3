@@ -8,6 +8,10 @@ import { Scenes, session } from "telegraf";
 import { getQuestionScene } from "../entities/Mood/model/scene/Question";
 import { getThemeScene } from "../entities/Themes/model/scene/setTheme";
 import { getEmojiScene } from "../entities/Emoji/model/scene/Emoji";
+import { notesModule } from "../entities/Notes";
+import { searchModule } from "../entities/Search";
+import { searchMonthScene } from "../entities/Search/model/scene/searchMonth";
+import { searchDayScene } from "../entities/Search/model/scene/searchDay";
 
 export const app = () => {
 	const bot = getBot();
@@ -17,9 +21,11 @@ export const app = () => {
 	const question = getQuestionScene();
 	const theme = getThemeScene();
 	const emoji = getEmojiScene();
+	const searchDay = searchDayScene();
+	const searchMonth = searchMonthScene();
 
 	//@ts-ignore
-	const stage = new Scenes.Stage([question, theme, emoji]);
+	const stage = new Scenes.Stage([question, theme, emoji, searchDay, searchMonth]);
 	//@ts-ignore
 	bot.use(stage.middleware());
 
@@ -28,6 +34,8 @@ export const app = () => {
 	themeModule();
 	startModule();
 	helpModule();
+	notesModule();
+	searchModule();
 
 	bot.on("message", async (ctx) => {
 		ctx.reply("Я тебя не понимаю");

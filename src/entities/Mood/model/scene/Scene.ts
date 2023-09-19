@@ -1,6 +1,6 @@
 import { Markup } from "telegraf";
 import prisma from "../../../../shared/db/prisma";
-import { createKeyboards } from "../../../../shared/lib/logic/telegrafHelpers/createKeyboard";
+import { createKeyboards } from "../../../../shared/lib/telegrafHelpers/createKeyboard";
 import { getActionString } from "../../../../shared/helpers/getActionString";
 import { getBot } from "../../../../shared/lib/bot/createBot";
 

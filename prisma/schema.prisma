@@ -14,7 +14,7 @@ model User {
   user_id  Int   @id @unique 
   username String
   themes   String[]
-  emoji_pack String[]
+  emoji_pack Bytes[]
   days     Day[]
   time_notification String @default("4 hour")
 

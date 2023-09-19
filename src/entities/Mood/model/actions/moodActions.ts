@@ -2,10 +2,7 @@ import { WizardScene } from "telegraf/typings/scenes";
 import prisma from "../../../../shared/db/prisma";
 import { getActionString } from "../../../../shared/helpers/getActionString";
 import { getBot } from "../../../../shared/lib/bot/createBot";
-import {
-	MapperKeys,
-	createKeyboards,
-} from "../../../../shared/lib/logic/telegrafHelpers/createKeyboard";
+import { MapperKeys, createKeyboards } from "../../../../shared/lib/telegrafHelpers/createKeyboard";
 import { Context, Markup, Scenes } from "telegraf";
 import { CallbackQuery, Update } from "telegraf/typings/core/types/typegram";
 import { setTheme } from "../scene/Scene";
