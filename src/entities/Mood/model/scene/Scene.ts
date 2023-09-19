@@ -23,7 +23,10 @@ export const setTheme = async (ctx) => {
 		bot.action(getActionString(Object.values(MapperKeys)[i], "theme"), async (ctx) => {
 			const currentNotes = await prisma.note.findMany({
 				where: {
-					Day: { date: new Date().toLocaleDateString("ru"), User: { user_id: ctx.from?.id } },
+					Day: {
+						date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }),
+						User: { user_id: ctx.from?.id },
+					},
 				},
 			});
 			let earlyNote;

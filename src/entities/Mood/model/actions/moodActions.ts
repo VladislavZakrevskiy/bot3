@@ -13,13 +13,13 @@ export const sendMood =
 
 		// const currentDay = new Date().getUTCDate();
 		let candidateDate = await prisma.day.findFirst({
-			where: { date: new Date().toLocaleDateString("ru") },
+			where: { date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }) },
 		});
 
 		if (!candidateDate) {
 			candidateDate = await prisma.day.create({
 				data: {
-					date: new Date().toLocaleDateString("ru"),
+					date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }),
 					User: { connect: { user_id: ctx.from?.id } },
 				},
 			});
@@ -28,7 +28,7 @@ export const sendMood =
 		await prisma.note.create({
 			data: {
 				mood: moodNumber,
-				time: new Date().toLocaleTimeString("ru"),
+				time: new Date().toLocaleTimeString("ru", { timeZone: "Asia/Baku" }),
 				themes: [],
 				Day: { connect: { day_id: candidateDate.day_id } },
 			},
