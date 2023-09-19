@@ -34,28 +34,24 @@ export const configureShowDaysCommand = () => {
 				switch (note.mood) {
 					case "ONE":
 						result += 1;
-						data.push(1);
 						break;
 					case "TWO":
 						result += 2;
-						data.push(2);
 						break;
 					case "THREE":
 						result += 3;
-						data.push(3);
 						break;
 					case "FOUR":
 						result += 4;
-						data.push(4);
 						break;
 					case "FIVE":
 						result += 5;
-						data.push(5);
 						break;
 				}
 			}
 
 			result = Math.floor(result / notes.length) || 1;
+			data.push(result);
 
 			let emoji = "";
 			switch (result) {
