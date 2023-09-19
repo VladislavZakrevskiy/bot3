@@ -1,7 +1,7 @@
 import { Markup } from "telegraf";
 import prisma from "../../../../shared/db/prisma";
 import { getBot } from "../../../../shared/lib/bot/createBot";
-import { createImg } from "../../../../shared/lib/img/createImg";
+// import { createImg } from "../../../../shared/lib/img/createImg";
 
 export const configureShowDaysCommand = () => {
 	const bot = getBot();
