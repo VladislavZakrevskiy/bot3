@@ -13,7 +13,10 @@ export const sendMood =
 
 		// const currentDay = new Date().getUTCDate();
 		let candidateDate = await prisma.day.findFirst({
-			where: { date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }) },
+			where: {
+				date: new Date().toLocaleDateString("ru", { timeZone: "Asia/Baku" }),
+				User: { user_id: ctx.from?.id },
+			},
 		});
 
 		if (!candidateDate) {
