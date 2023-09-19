@@ -20,6 +20,7 @@ export const getThemeScene = () => {
 				//@ts-ignore
 				return ctx.scene.leave();
 			}
+			user.themes = ctx.message.text.split(",").map((value) => value.trim());
 
 			// user.themes = ctx.message.text.split(",").map((theme) => theme.trim());
 			await prisma.user.update({ where: { user_id: user.user_id }, data: user });
