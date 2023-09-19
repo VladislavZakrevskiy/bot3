@@ -1,6 +1,6 @@
 import { Markup } from "telegraf";
 import prisma from "../../../../shared/db/prisma";
-import { createKeyboards } from "../../../../shared/lib/telegrafHelpers/createKeyboard";
+import { MapperKeys, createKeyboards } from "../../../../shared/lib/telegrafHelpers/createKeyboard";
 import { getActionString } from "../../../../shared/helpers/getActionString";
 import { getBot } from "../../../../shared/lib/bot/createBot";
 
@@ -20,7 +20,7 @@ export const setTheme = async (ctx) => {
 	}
 
 	for (let i = 0; i < user.themes.length; i++) {
-		bot.action(getActionString(user.themes[i], "theme"), async (ctx) => {
+		bot.action(getActionString(Object.values(MapperKeys)[i], "theme"), async (ctx) => {
 			const currentNotes = await prisma.note.findMany({
 				where: {
 					Day: { date: new Date().toLocaleDateString("ru"), User: { user_id: ctx.from?.id } },
