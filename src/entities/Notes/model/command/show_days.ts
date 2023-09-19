@@ -1,5 +1,7 @@
+import { Markup } from "telegraf";
 import prisma from "../../../../shared/db/prisma";
 import { getBot } from "../../../../shared/lib/bot/createBot";
+import { createImg } from "../../../../shared/lib/img/createImg";
 
 export const configureShowDaysCommand = () => {
 	const bot = getBot();
@@ -22,6 +24,7 @@ export const configureShowDaysCommand = () => {
 			days = days.slice(0, 10);
 		}
 
+		const data: number[] = [];
 		const daysNotes = days.map((day) => {
 			const notes = day.notes;
 			let result = 0;
@@ -31,18 +34,23 @@ export const configureShowDaysCommand = () => {
 				switch (note.mood) {
 					case "ONE":
 						result += 1;
+						data.push(1);
 						break;
 					case "TWO":
 						result += 2;
+						data.push(2);
 						break;
 					case "THREE":
 						result += 3;
+						data.push(3);
 						break;
 					case "FOUR":
 						result += 4;
+						data.push(4);
 						break;
 					case "FIVE":
 						result += 5;
+						data.push(5);
 						break;
 				}
 			}
@@ -74,7 +82,12 @@ export const configureShowDaysCommand = () => {
 		await ctx.reply(
 			`Среднее настроение за ${
 				`${days[0].date}-${days[days.length - 1].date}` || "эти дни"
-			}\n${daysNotes.join("")}`
+			}\n${daysNotes.join("")}`,
+			Markup.inlineKeyboard([[Markup.button.callback("Скачать график", "send_days")]])
 		);
+
+		bot.action("send_days", async (ctx) => {
+			ctx.sendPhoto(createImg(data));
+		});
 	});
 };
