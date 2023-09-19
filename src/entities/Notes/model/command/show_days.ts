@@ -78,12 +78,12 @@ export const configureShowDaysCommand = () => {
 		await ctx.reply(
 			`Среднее настроение за ${
 				`${days[0].date}-${days[days.length - 1].date}` || "эти дни"
-			}\n${daysNotes.join("")}`,
-			Markup.inlineKeyboard([[Markup.button.callback("Скачать график", "send_days")]])
+			}\n${daysNotes.join("")}`
+			// Markup.inlineKeyboard([[Markup.button.callback("Скачать график", "send_days")]])
 		);
 
-		bot.action("send_days", async (ctx) => {
-			ctx.sendPhoto(createImg(data));
-		});
+		// bot.action("send_days", async (ctx) => {
+		// 	ctx.sendPhoto(createImg(data));
+		// });
 	});
 };
